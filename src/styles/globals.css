@@ -34,7 +34,7 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 62.5%; /* 1rem = 10px */
 }
 
 body {
@@ -46,12 +46,12 @@ body {
 }
 
 header {
-  margin-top: 20px;
+  margin-top: 2%;
   position: sticky;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1rem 9%;
+  padding: 2% 5%; /* Changed to percentage */
   background-color: transparent;
   display: flex;
   justify-content: space-between;
@@ -63,7 +63,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 2% 5%; /* Changed to percentage */
   background-color: var(--background-color);
   color: var(--text-color);
   position: sticky;
@@ -94,14 +94,14 @@ header {
 }
 
 .theme-toggle {
-  background: block;
+  background: none;
   border: none;
   font-size: 2rem;
   cursor: pointer;
   color: var(--text-color);
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 2%;
+  right: 2%;
 }
 
 .menu-toggle {
@@ -119,12 +119,12 @@ header {
   position: fixed;
   top: 0;
   right: -250px; /* Sidebar starts off-screen to the right */
-  width: 250px;
+  width: 250px; /* Fixed width for sidebar */
   height: 100%;
   background-color: var(--background-color);
   padding: 2rem;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Shadow on the left side */
-  transition: right 0.3s ease; /* Smooth transition for the right property */
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease;
   overflow-y: auto;
 }
 
@@ -204,7 +204,7 @@ nav a.active {
 
 section {
   min-height: 100vh;
-  padding: 5rem 9% 5rem;
+  padding: 5% 5%; /* Changed to percentage */
 }
 
 .home {
@@ -231,7 +231,8 @@ span {
   font-weight: 700;
 }
 
-.home-img , img {
+.home-img,
+img {
   border: 1px solid black !important;
   border-radius: 50%;
 }
@@ -368,7 +369,7 @@ span {
 @media (max-width: 995px) {
   .home {
     flex-direction: column;
-    margin: 5rem 4rem;
+    margin: 5% 2%; /* Changed to percentage */
   }
 
   .home .home-content h3 {
@@ -388,7 +389,7 @@ span {
 }
 
 .home-img {
-  max-width: 300px;
+  max-width: 30%; /* Changed to percentage */
   margin: 0 auto;
 }
 
@@ -399,7 +400,7 @@ span {
   }
 
   .home-img {
-    max-width: 200px;
+    max-width: 50%; /* Changed to percentage */
   }
 
   .home-content h1 {
@@ -410,4 +411,3 @@ span {
     font-size: 2.5rem;
   }
 }
-
