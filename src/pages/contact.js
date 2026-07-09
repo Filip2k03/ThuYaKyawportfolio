@@ -11,6 +11,18 @@ const ICONS = {
 };
 
 const Contact = () => {
+  // Compose the mailto in JS on submit — a literal mailto: form action
+  // triggers a mixed-content warning on HTTPS and can't prefill a body.
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const subject = encodeURIComponent(`Portfolio inquiry from ${data.get('name')}`);
+    const body = encodeURIComponent(
+      `${data.get('message')}\n\n— ${data.get('name')} (${data.get('email')})`
+    );
+    window.location.href = `mailto:${identity.email}?subject=${subject}&body=${body}`;
+  };
+
   return (
     <Layout
       title="Contact"
@@ -51,12 +63,7 @@ const Contact = () => {
           </Reveal>
 
           <Reveal className={styles.formWrap} delay={120}>
-            <form
-              className={`glass-card ${styles.form}`}
-              action={`mailto:${identity.email}`}
-              method="post"
-              encType="text/plain"
-            >
+            <form className={`glass-card ${styles.form}`} onSubmit={onSubmit}>
               <label htmlFor="name">Name</label>
               <input type="text" id="name" name="name" autoComplete="name" required />
 
