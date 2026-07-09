@@ -3,6 +3,7 @@ import Footer from './Footer';
 import BackToTop from './BackToTop';
 import ScrollProgress from './ScrollProgress';
 import Terminal from './Terminal';
+import FoxMascot from './FoxMascot';
 import SEO from './SEO';
 
 // Shared page shell: skip link, progress bar, header, main landmark,
@@ -19,6 +20,7 @@ const Layout = ({ children, title, description }) => {
       <main id="main-content">{children}</main>
       <Footer />
       <Terminal />
+      <FoxMascot />
       <BackToTop />
     </>
   );

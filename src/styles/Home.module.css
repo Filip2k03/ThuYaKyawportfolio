@@ -210,6 +210,16 @@
   display: block;
 }
 
+/* Logo-style artwork: show the whole mark on an elevated matte panel */
+.projectImageContain {
+  background: var(--bg-elev-2);
+}
+
+.projectImageContain img {
+  object-fit: contain;
+  padding: 1.6rem;
+}
+
 .projectBody {
   display: flex;
   flex-direction: column;

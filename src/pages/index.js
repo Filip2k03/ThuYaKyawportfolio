@@ -114,7 +114,9 @@ export default function Home() {
                 variant={index % 2 === 0 ? 'left' : 'right'}
               >
                 <article className={`glass-card ${styles.projectCard}`}>
-                  <div className={styles.projectImage}>
+                  <div
+                    className={`${styles.projectImage} ${project.fit === 'contain' ? styles.projectImageContain : ''}`}
+                  >
                     <Image src={project.image} alt="" width={480} height={280} />
                   </div>
                   <div className={styles.projectBody}>

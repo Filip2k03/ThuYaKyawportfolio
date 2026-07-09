@@ -28,6 +28,23 @@ export const socials = [
   { label: 'Email', href: 'mailto:stephanfilip7@gmail.com', icon: 'email' },
 ];
 
+// Online presence — rendered on the contact page and available to the terminal.
+export const profiles = [
+  { label: 'GitHub', href: 'https://github.com/Filip2k03', desc: 'Code & open source' },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/thu-ya-kyaw-5a606732b',
+    desc: 'Professional profile',
+  },
+  { label: 'Reiwasakura', href: 'https://reiwasakura.tech', desc: 'My company — CTO' },
+  { label: 'PaiCafes', href: 'https://paicafes.com', desc: 'Production cafe platform' },
+  {
+    label: 'Digital Marketplace MM',
+    href: 'https://digitalmarketplacemm.com',
+    desc: 'Marketplace I engineered',
+  },
+];
+
 export const skills = [
   { name: 'HTML5', level: 95, icon: 'html' },
   { name: 'CSS3', level: 90, icon: 'css' },
@@ -105,7 +122,8 @@ export const projects = [
       'Company platform of Reiwasakura, where I lead technology as CTO — engineering strategy, product and delivery at reiwasakura.tech.',
     href: 'https://reiwasakura.tech',
     tags: ['CTO', 'Company', 'Platform'],
-    image: '/images/reiwasakura.svg',
+    image: '/images/reiwasakura-logo.png',
+    fit: 'contain',
   },
   {
     title: 'PaiCafes',

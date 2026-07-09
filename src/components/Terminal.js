@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { FaTerminal, FaTimes } from 'react-icons/fa';
 import { ACCENTS, applyAccent } from '../lib/accents';
-import { identity, socials, skills, services, projects } from '../data/profile';
+import { identity, socials, skills, services, projects, profiles } from '../data/profile';
 import styles from '../styles/Terminal.module.css';
 
 const PROMPT = `guest@${identity.alias.toLowerCase()}:~$`;
@@ -53,6 +53,7 @@ const Terminal = () => {
           '  skills          tech stack',
           '  projects        shipped work',
           '  services        what I offer',
+          '  profiles        find me online',
           '  contact         how to reach me',
           `  accent <name>   ${ACCENTS.join(' | ')}`,
           '  theme <mode>    dark | light',
@@ -71,6 +72,8 @@ const Terminal = () => {
         return projects.map((p) => `  ${p.title} → ${p.href}`);
       case 'services':
         return services.map((s) => `  · ${s.title}`);
+      case 'profiles':
+        return profiles.map((p) => `  ${p.label} → ${p.href}`);
       case 'contact':
         return [
           `  email: ${identity.email}`,

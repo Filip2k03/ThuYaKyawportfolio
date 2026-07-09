@@ -1,7 +1,7 @@
 import { FaLinkedin, FaGithub, FaEnvelope, FaPhone } from 'react-icons/fa';
 import Layout from '../components/Layout';
 import Reveal from '../components/Reveal';
-import { identity, socials } from '../data/profile';
+import { identity, socials, profiles } from '../data/profile';
 import styles from '../styles/Contact.module.css';
 
 const ICONS = {
@@ -70,6 +70,32 @@ const Contact = () => {
                 Send Message
               </button>
             </form>
+          </Reveal>
+        </div>
+
+        <div className="container">
+          <Reveal className={styles.profilesBlock}>
+            <span className="section-eyebrow">profiles --all</span>
+            <h2 className="section-title">
+              Find Me <span>Online</span>
+            </h2>
+            <div className={styles.profilesGrid}>
+              {profiles.map((profile) => (
+                <a
+                  key={profile.label}
+                  href={profile.href}
+                  className={`glass-card ${styles.profileCard}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className={styles.profileLabel}>{profile.label}</span>
+                  <span className={styles.profileDesc}>{profile.desc}</span>
+                  <span className={`mono ${styles.profileUrl}`}>
+                    {profile.href.replace('https://', '').replace(/\/$/, '')}
+                  </span>
+                </a>
+              ))}
+            </div>
           </Reveal>
         </div>
       </section>

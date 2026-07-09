@@ -1,0 +1,70 @@
+.wrap {
+  position: fixed;
+  right: 2rem;
+  bottom: 8.4rem;
+  z-index: 940;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.8rem;
+}
+
+.foxBtn {
+  border-radius: 50%;
+  line-height: 0;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.35));
+  transition: transform 0.2s ease;
+}
+
+.foxBtn:hover {
+  transform: scale(1.06);
+}
+
+.fox {
+  animation: foxBob 4s ease-in-out infinite alternate;
+  transform-origin: 50% 80%;
+}
+
+@keyframes foxBob {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -7px;
+  }
+}
+
+.bubble {
+  max-width: 24rem;
+  padding: 1rem 1.4rem;
+  border-radius: 1.2rem 1.2rem 0.2rem 1.2rem;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  font-size: 1.35rem;
+  color: var(--text);
+  animation: bubbleIn 0.25s ease;
+}
+
+@keyframes bubbleIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrap {
+    right: 1.2rem;
+    bottom: 8rem;
+  }
+
+  .fox svg {
+    width: 64px;
+    height: 59px;
+  }
+}
