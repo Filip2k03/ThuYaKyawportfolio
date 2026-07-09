@@ -1,0 +1,45 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.4rem;
+}
+
+.card {
+  padding: 2.8rem;
+  height: 100%;
+}
+
+.card h2 {
+  font-size: 2rem;
+  margin-bottom: 1.6rem;
+  color: var(--accent);
+}
+
+.card ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding-left: 1.8rem;
+}
+
+.card li {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+}
+
+.card li::marker {
+  color: var(--accent);
+}
+
+.card a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+.projectsBlock {
+  margin-top: 2.4rem;
+}

@@ -1,0 +1,26 @@
+.backToTop {
+  position: fixed;
+  bottom: 2.4rem;
+  right: 2.4rem;
+  z-index: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 0.8rem;
+  font-size: 1.8rem;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  box-shadow: var(--shadow-soft);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.backToTop.visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}

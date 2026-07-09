@@ -1,65 +1,53 @@
-# my-nextjs-portfolio/my-nextjs-portfolio/README.md
+# TechyyFilip — Portfolio v2
 
-# My Next.js Portfolio
+Personal portfolio of **Thu Ya Kyaw** (a.k.a. **TechyyFilip**) — Full Stack Developer, UI/UX Designer, Tech Artist.
 
-This is a portfolio website built using Next.js, showcasing my skills, services, experience, and a contact form. The project is structured to provide a seamless user experience with responsive design and modern web technologies.
+Live: [techyyfilip.vercel.app](https://techyyfilip.vercel.app)
 
-## Project Structure
+## v2 Highlights
 
-```
-my-nextjs-portfolio
-├── public
-│   ├── images
-│   ├── ads.txt
-│   └── vercel.json
-├── src
-│   ├── pages
-│   ├── styles
-│   └── components
-├── package.json
-└── README.md
-```
+- **Retro-matte design system** — warm near-black/brown dark theme, matte emerald accent, terminal-flavored mono labels, subtle CRT scanline overlay.
+- **Theme + accent customizer** — dark/light toggle plus a user-selectable accent (emerald / violet / bronze), persisted in localStorage.
+- **Typewriter hero** with blinking block cursor (static under `prefers-reduced-motion`).
+- **Featured projects showcase**, scroll-reveal animations, back-to-top button, custom 404.
+- **SEO** — per-page meta, Open Graph, Twitter cards, JSON-LD Person schema, canonical URLs, `sitemap.xml`, `robots.txt`.
+- **Accessibility** — skip link, landmarks, `aria-label`s on icon buttons, visible focus rings, reduced-motion support.
+- **Content as data** — all copy lives in `src/data/profile.js`; components never hardcode content.
 
-## Features
+## Stack
 
-- **Responsive Design**: The website is designed to be fully responsive, ensuring a great experience on both desktop and mobile devices.
-- **Dynamic Routing**: Utilizes Next.js's file-based routing for easy navigation between different sections of the portfolio.
-- **SEO Optimized**: The project includes meta tags and structured data to improve search engine visibility.
-- **Image Optimization**: Images are stored in the `public/images` directory and are optimized for web use.
+Next.js (Pages Router) · React · CSS Modules with design tokens · next-themes · react-icons · next/font (Poppins + JetBrains Mono)
 
 ## Getting Started
 
-To run this project locally, follow these steps:
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm run lint     # ESLint
+```
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/Filip2k03/next.js-portfolio.git
-   ```
+## Structure
 
-2. Navigate to the project directory:
-   ```
-   cd my-nextjs-portfolio
-   ```
+```
+src/
+├── data/profile.js      # all site content (identity, skills, services, projects, experience)
+├── lib/storage.js       # namespaced, SSR-safe localStorage service
+├── hooks/useTypewriter.js
+├── components/          # Layout, SEO, Header, Footer, Reveal, AccentPicker, BackToTop, Skill(s)
+├── pages/               # index, skills, services, experience, contact, 404
+└── styles/              # globals.css (tokens) + CSS Modules per component/page
+```
 
-3. Install the dependencies:
-   ```
-   npm install
-   ```
+## localStorage Schema
 
-4. Start the development server:
-   ```
-   npm run dev
-   ```
+| Key             | Type     | Description                                        |
+| --------------- | -------- | -------------------------------------------------- |
+| `tf:v1:accent`  | `string` | Selected accent theme: `emerald`, `violet`, `bronze` |
+| `theme`         | `string` | Dark/light preference (managed by next-themes)     |
 
-5. Open your browser and go to `http://localhost:3000`.
-
-## Technologies Used
-
-- **Next.js**: A React framework for server-side rendering and static site generation.
-- **React**: A JavaScript library for building user interfaces.
-- **CSS**: For styling the components and layout.
-- **Font Awesome**: For icons used throughout the website.
+All access goes through `src/lib/storage.js` — namespaced keys, `try/catch`-wrapped, SSR-safe.
 
 ## License
 
-This project is licensed under the MIT License.# next.js-portfolio
+MIT © Thu Ya Kyaw (TechyyFilip)

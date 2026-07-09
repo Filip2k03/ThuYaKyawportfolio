@@ -1,37 +1,50 @@
 .skillsSection {
-    padding: 2rem;
-    text-align: center;
+  background: var(--bg-elev-1);
 }
 
-.skillsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
 }
 
 .skill {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 150px;
+  padding: 2rem;
 }
 
-.skill span {
-    margin-top: 0.5rem;
-    font-size: 1.2rem;
+.skillHead {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.4rem;
 }
 
-.progress-bar {
-    width: 100%;
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 0.5rem;
+.skillIcon {
+  font-size: 2.4rem;
+  color: var(--accent);
+}
+
+.skillName {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.skillLevel {
+  margin-left: auto;
+  font-size: 1.3rem;
+  color: var(--text-muted);
+}
+
+.progressBar {
+  height: 0.8rem;
+  border-radius: 0.4rem;
+  background: var(--surface-strong);
+  overflow: hidden;
 }
 
 .progress {
-    height: 10px;
-    background-color: var(--primary-color);
-    border-radius: 5px;
+  height: 100%;
+  border-radius: 0.4rem;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.8s ease;
 }

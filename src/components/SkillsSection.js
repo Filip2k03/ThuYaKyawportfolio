@@ -1,33 +1,31 @@
-import React from 'react';
 import Skill from './Skill';
+import Reveal from './Reveal';
+import { skills } from '../data/profile';
 import styles from '../styles/SkillsSection.module.css';
 
-const skills = [
-    { skillName: 'Web Development', proficiency: 90, imageUrl: '/images/web-development.png' },
-    { skillName: 'HTML', proficiency: 95, imageUrl: '/images/html.png' },
-    { skillName: 'CSS', proficiency: 90, imageUrl: '/images/css.png' },
-    { skillName: 'JavaScript', proficiency: 85, imageUrl: '/images/javascript.png' },
-    { skillName: 'React', proficiency: 80, imageUrl: '/images/react.png' },
-    { skillName: 'Python + Django', proficiency: 75, imageUrl: '/images/python-django.png' },
-    { skillName: 'PHP + Laravel', proficiency: 70, imageUrl: '/images/php-laravel.png' },
-];
-
 const SkillsSection = () => {
-    return (
-        <section className={styles.skillsSection}>
-            <h2>My Skills</h2>
-            <div className={styles.skillsContainer}>
-                {skills.map((skill, index) => (
-                    <Skill
-                        key={index}
-                        skillName={skill.skillName}
-                        proficiency={skill.proficiency}
-                        imageUrl={skill.imageUrl}
-                    />
-                ))}
-            </div>
-        </section>
-    );
+  return (
+    <section className={`section ${styles.skillsSection}`} aria-labelledby="skills-heading">
+      <div className="container">
+        <Reveal>
+          <span className="section-eyebrow">skills --list</span>
+          <h2 id="skills-heading" className="section-title">
+            My <span>Skills</span>
+          </h2>
+          <p className="section-lead">
+            The tools I reach for daily — front-end craft, back-end muscle, and everything between.
+          </p>
+        </Reveal>
+        <div className={styles.skillsGrid}>
+          {skills.map((skill, index) => (
+            <Reveal key={skill.name} delay={index * 60}>
+              <Skill {...skill} />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default SkillsSection;
