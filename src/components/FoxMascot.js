@@ -44,7 +44,8 @@ const FoxMascot = () => {
         if (prev !== shouldDock) {
           setFlying(true);
           window.clearTimeout(flyTimer);
-          flyTimer = window.setTimeout(() => setFlying(false), 950);
+          // matches the foxFlight keyframe duration so it parks exactly once
+          flyTimer = window.setTimeout(() => setFlying(false), 1650);
         }
         return shouldDock;
       });
