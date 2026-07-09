@@ -8,6 +8,7 @@ Live: [techyyfilip.vercel.app](https://techyyfilip.vercel.app)
 
 - **Retro-matte design system** — warm near-black/brown dark theme, matte emerald accent, terminal-flavored mono labels, subtle CRT scanline overlay.
 - **Theme + accent customizer** — dark/light toggle plus a user-selectable accent (emerald / violet / bronze), persisted in localStorage.
+- **i18n** — English (default), Myanmar (မြန်မာ) and Russian (Русский) interface, switchable from the header and persisted in localStorage.
 - **Typewriter hero** with blinking block cursor (static under `prefers-reduced-motion`).
 - **Interactive terminal** — visitors can play with `help`, `whoami`, `skills`, `projects`, `accent violet`, `theme light` and more; all output reads from the data layer.
 - **Featured projects showcase** (Reiwasakura, PaiCafes, Digital Marketplace MM, …) with AOS-style directional scroll reveals (up/left/right/zoom).
@@ -46,6 +47,7 @@ src/
 | Key             | Type     | Description                                        |
 | --------------- | -------- | -------------------------------------------------- |
 | `tf:v1:accent`  | `string` | Selected accent theme: `emerald`, `violet`, `bronze` |
+| `tf:v1:lang`    | `string` | Interface language: `en` (default), `my`, `ru`     |
 | `theme`         | `string` | Dark/light preference (managed by next-themes)     |
 
 All access goes through `src/lib/storage.js` — namespaced keys, `try/catch`-wrapped, SSR-safe.

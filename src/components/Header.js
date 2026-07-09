@@ -4,22 +4,26 @@ import { useRouter } from 'next/router';
 import { FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa';
 import { useTheme } from 'next-themes';
 import AccentPicker from './AccentPicker';
+import { useLanguage, useT } from '../context/LanguageContext';
+import { LANGUAGES } from '../data/i18n';
 import styles from '../styles/Header.module.css';
-
-const NAV_LINKS = [
-  { href: '/', label: 'Home' },
-  { href: '/skills', label: 'Skills' },
-  { href: '/services', label: 'Services' },
-  { href: '/experience', label: 'Experience' },
-  { href: '/contact', label: 'Contact' },
-];
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   // Theme icon must render only after mount to avoid SSR/client hydration mismatch
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
+  const { lang, setLang } = useLanguage();
+  const t = useT();
   const router = useRouter();
+
+  const navLinks = [
+    { href: '/', label: t.nav.home },
+    { href: '/skills', label: t.nav.skills },
+    { href: '/services', label: t.nav.services },
+    { href: '/experience', label: t.nav.experience },
+    { href: '/contact', label: t.nav.contact },
+  ];
 
   useEffect(() => setMounted(true), []);
 
@@ -32,6 +36,13 @@ const Header = () => {
 
   const isDark = resolvedTheme === 'dark';
 
+  const cycleLang = () => {
+    const index = LANGUAGES.findIndex((l) => l.code === lang);
+    setLang(LANGUAGES[(index + 1) % LANGUAGES.length].code);
+  };
+
+  const current = LANGUAGES.find((l) => l.code === lang) || LANGUAGES[0];
+
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
@@ -40,7 +51,7 @@ const Header = () => {
         </Link>
 
         <nav className={`${styles.nav} ${menuOpen ? styles.open : ''}`} aria-label="Main navigation">
-          {NAV_LINKS.map(({ href, label }) => (
+          {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
@@ -53,6 +64,14 @@ const Header = () => {
         </nav>
 
         <div className={styles.actions}>
+          <button
+            className={`mono ${styles.iconBtn} ${styles.langBtn}`}
+            onClick={cycleLang}
+            aria-label={`Change language (current: ${current.label})`}
+            title={current.label}
+          >
+            {mounted ? current.short : 'EN'}
+          </button>
           <AccentPicker />
           <button
             className={styles.iconBtn}

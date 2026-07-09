@@ -1,10 +1,12 @@
 import Image from 'next/image';
 import Layout from '../components/Layout';
 import Reveal from '../components/Reveal';
+import { useT } from '../context/LanguageContext';
 import { services } from '../data/profile';
 import styles from '../styles/Services.module.css';
 
 const Services = () => {
+  const t = useT();
   return (
     <Layout
       title="Services"
@@ -15,11 +17,9 @@ const Services = () => {
           <Reveal variant="fly">
             <span className="section-eyebrow">services --list</span>
             <h1 id="services-heading" className="section-title">
-              My <span>Services</span>
+              {t.services.titlePre} <span>{t.services.titleAccent}</span>
             </h1>
-            <p className="section-lead">
-              From first sketch to production deploy — everything you need to ship something great.
-            </p>
+            <p className="section-lead">{t.services.lead}</p>
           </Reveal>
           <div className={styles.serviceGrid}>
             {services.map((service, index) => (

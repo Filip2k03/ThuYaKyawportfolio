@@ -1,9 +1,11 @@
 import Layout from '../components/Layout';
 import Reveal from '../components/Reveal';
+import { useT } from '../context/LanguageContext';
 import { experience, projects } from '../data/profile';
 import styles from '../styles/Experience.module.css';
 
 const Experience = () => {
+  const t = useT();
   return (
     <Layout
       title="Experience"
@@ -14,11 +16,9 @@ const Experience = () => {
           <Reveal variant="fly">
             <span className="section-eyebrow">experience --log</span>
             <h1 id="experience-heading" className="section-title">
-              My <span>Experience</span>
+              {t.experience.titlePre} <span>{t.experience.titleAccent}</span>
             </h1>
-            <p className="section-lead">
-              Achievements, education and the journey so far.
-            </p>
+            <p className="section-lead">{t.experience.lead}</p>
           </Reveal>
 
           <div className={styles.grid}>

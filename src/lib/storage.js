@@ -3,6 +3,7 @@ const NAMESPACE = 'tf:v1';
 
 export const STORAGE_KEYS = {
   accent: `${NAMESPACE}:accent`,
+  lang: `${NAMESPACE}:lang`,
 };
 
 // Reads must survive SSR, private mode and corrupted values without crashing.

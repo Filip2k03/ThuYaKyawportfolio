@@ -1,4 +1,5 @@
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import { useT } from '../context/LanguageContext';
 import { identity, socials } from '../data/profile';
 import styles from '../styles/Footer.module.css';
 
@@ -9,6 +10,7 @@ const ICONS = {
 };
 
 const Footer = () => {
+  const t = useT();
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
@@ -26,7 +28,7 @@ const Footer = () => {
           })}
         </div>
         <p className={styles.copy}>
-          &copy; {new Date().getFullYear()} {identity.name}. All rights reserved.
+          &copy; {new Date().getFullYear()} {identity.name}. {t.footer.rights}
         </p>
       </div>
     </footer>

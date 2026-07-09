@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FaLinkedin, FaGithub, FaEnvelope, FaPhone, FaCopy, FaCheck } from 'react-icons/fa';
 import Layout from '../components/Layout';
 import Reveal from '../components/Reveal';
+import { useT } from '../context/LanguageContext';
 import { identity, socials, profiles } from '../data/profile';
 import styles from '../styles/Contact.module.css';
 
@@ -12,6 +13,7 @@ const ICONS = {
 };
 
 const Contact = () => {
+  const t = useT();
   const [copied, setCopied] = useState(false);
 
   const copyEmail = async () => {
@@ -46,11 +48,9 @@ const Contact = () => {
           <Reveal className={styles.intro} variant="fly">
             <span className="section-eyebrow">contact --init</span>
             <h1 id="contact-heading" className="section-title">
-              Let&apos;s <span>Talk</span>
+              {t.contact.titlePre} <span>{t.contact.titleAccent}</span>
             </h1>
-            <p className="section-lead">
-              Have a project in mind or just want to say hi? My inbox is always open.
-            </p>
+            <p className="section-lead">{t.contact.lead}</p>
 
             <div className={styles.channels}>
               <div className={`glass-card ${styles.channel}`}>
@@ -87,17 +87,17 @@ const Contact = () => {
 
           <Reveal className={styles.formWrap} delay={120}>
             <form className={`glass-card ${styles.form}`} onSubmit={onSubmit}>
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">{t.contact.name}</label>
               <input type="text" id="name" name="name" autoComplete="name" required />
 
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">{t.contact.email}</label>
               <input type="email" id="email" name="email" autoComplete="email" required />
 
-              <label htmlFor="message">Message</label>
+              <label htmlFor="message">{t.contact.message}</label>
               <textarea id="message" name="message" rows="5" required />
 
               <button type="submit" className="btn">
-                Send Message
+                {t.contact.send}
               </button>
             </form>
           </Reveal>
@@ -107,7 +107,7 @@ const Contact = () => {
           <Reveal className={styles.profilesBlock}>
             <span className="section-eyebrow">profiles --all</span>
             <h2 className="section-title">
-              Find Me <span>Online</span>
+              {t.contact.profilesPre} <span>{t.contact.profilesAccent}</span>
             </h2>
             <div className={styles.profilesGrid}>
               {profiles.map((profile) => (

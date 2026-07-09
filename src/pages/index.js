@@ -7,6 +7,7 @@ import StatsSection from '../components/StatsSection';
 import Reveal from '../components/Reveal';
 import { useTypewriter } from '../hooks/useTypewriter';
 import { useTilt } from '../hooks/useTilt';
+import { useT } from '../context/LanguageContext';
 import { identity, socials, projects } from '../data/profile';
 import styles from '../styles/Home.module.css';
 
@@ -21,6 +22,7 @@ const FLOAT_CHIPS = ['React', 'Next.js', 'PHP', 'Python'];
 export default function Home() {
   const typedRole = useTypewriter(identity.roles);
   const tiltRef = useTilt(8);
+  const t = useT();
 
   return (
     <Layout>
@@ -34,23 +36,23 @@ export default function Home() {
           <div className={styles.heroContent}>
             <span className="section-eyebrow">whoami</span>
             <h1 id="hero-heading" className={styles.heroTitle}>
-              Hi, I&apos;m <span>{identity.name}</span>
+              {t.hero.greeting} <span>{identity.name}</span>
             </h1>
             <p className={`mono ${styles.heroRole}`} aria-label={`Roles: ${identity.roles.join(', ')}`}>
               {typedRole}
               <span className="cursor-block" aria-hidden="true" />
             </p>
-            <p className={styles.heroTagline}>{identity.tagline}</p>
+            <p className={styles.heroTagline}>{t.hero.tagline}</p>
             <p className={`mono ${styles.heroPositions}`}>
               {identity.positions.map((p) => `${p.role} @ ${p.company}`).join(' · ')}
             </p>
 
             <div className={styles.heroButtons}>
               <a href={identity.cvPath} className="btn" download>
-                <FaDownload aria-hidden="true" /> Download CV
+                <FaDownload aria-hidden="true" /> {t.hero.downloadCv}
               </a>
               <Link href="/contact" className="btn btn--ghost">
-                Hire Me
+                {t.hero.hireMe}
               </Link>
             </div>
 
@@ -100,11 +102,9 @@ export default function Home() {
           <Reveal variant="fly">
             <span className="section-eyebrow">projects --featured</span>
             <h2 id="projects-heading" className="section-title">
-              Featured <span>Projects</span>
+              {t.projects.titlePre} <span>{t.projects.titleAccent}</span>
             </h2>
-            <p className="section-lead">
-              A few things I&apos;ve designed, built and shipped.
-            </p>
+            <p className="section-lead">{t.projects.lead}</p>
           </Reveal>
           <div className={styles.projectsGrid}>
             {projects.map((project, index) => (
@@ -135,7 +135,7 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Visit project <FaExternalLinkAlt aria-hidden="true" />
+                      {t.projects.visit} <FaExternalLinkAlt aria-hidden="true" />
                     </a>
                   </div>
                 </article>
