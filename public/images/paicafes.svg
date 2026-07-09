@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="280" viewBox="0 0 480 280" role="img" aria-label="PaiCafes">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16140f"/>
+      <stop offset="1" stop-color="#0e2a1f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.8" cy="0.2" r="0.9">
+      <stop offset="0" stop-color="#34d399" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="480" height="280" fill="url(#bg)"/>
+  <rect width="480" height="280" fill="url(#glow)"/>
+  <g stroke="#34d399" stroke-opacity="0.15" stroke-width="1">
+    <path d="M0 70h480M0 140h480M0 210h480M120 0v280M240 0v280M360 0v280"/>
+  </g>
+  <g transform="translate(200,88)">
+    <path d="M8 12h56v34a20 20 0 0 1-20 20H28a20 20 0 0 1-20-20V12z" fill="none" stroke="#34d399" stroke-width="5"/>
+    <path d="M64 20h8a12 12 0 0 1 0 24h-8" fill="none" stroke="#34d399" stroke-width="5"/>
+    <path d="M24 0c0 6-6 6-6 12M42 0c0 6-6 6-6 12" stroke="#34d399" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+  <text x="240" y="208" text-anchor="middle" font-family="monospace" font-size="30" font-weight="bold" fill="#f5f3ee">PaiCafes</text>
+  <text x="240" y="236" text-anchor="middle" font-family="monospace" font-size="14" fill="#34d399">paicafes.com</text>
+</svg>

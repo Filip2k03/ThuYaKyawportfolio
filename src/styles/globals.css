@@ -23,7 +23,7 @@
   --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.45);
 
   --radius: 14px;
-  --header-h: 72px;
+  --header-h: 92px; /* floating pill height + top offset + breathing room */
 }
 
 [data-accent='violet'] {

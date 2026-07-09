@@ -23,6 +23,10 @@ const SEO = ({ title, description, image }) => {
     image: ogImage,
     email: `mailto:${identity.email}`,
     jobTitle: identity.roles[0],
+    worksFor: identity.positions.map((p) => ({
+      '@type': 'Organization',
+      name: p.company,
+    })),
     knowsAbout: [
       'Web Development',
       'React',

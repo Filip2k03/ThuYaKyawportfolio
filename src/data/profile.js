@@ -4,11 +4,15 @@ export const identity = {
   alias: 'TechyyFilip',
   tagline: 'I craft fast, accessible, beautifully engineered web experiences.',
   roles: [
+    'Chief Technology Officer',
     'Full Stack Developer',
     'UI/UX Designer',
-    'React Developer',
     'System Engineer',
     'Tech Artist',
+  ],
+  positions: [
+    { role: 'CTO', company: 'Reiwasakura' },
+    { role: 'CTO', company: 'New Earth Company Limited' },
   ],
   location: 'Global / Remote',
   email: 'stephanfilip7@gmail.com',
@@ -28,13 +32,19 @@ export const skills = [
   { name: 'HTML5', level: 95, icon: 'html' },
   { name: 'CSS3', level: 90, icon: 'css' },
   { name: 'JavaScript', level: 85, icon: 'js' },
-  { name: 'React / Next.js', level: 80, icon: 'react' },
+  { name: 'TypeScript', level: 80, icon: 'typescript' },
+  { name: 'React', level: 85, icon: 'react' },
+  { name: 'Next.js', level: 82, icon: 'nextjs' },
+  { name: 'Node.js', level: 78, icon: 'node' },
   { name: 'Tailwind CSS', level: 85, icon: 'tailwind' },
   { name: 'Bootstrap', level: 90, icon: 'bootstrap' },
   { name: 'Python + Django', level: 75, icon: 'python' },
   { name: 'PHP + Laravel', level: 70, icon: 'php' },
   { name: 'MySQL', level: 80, icon: 'mysql' },
   { name: 'WordPress', level: 85, icon: 'wordpress' },
+  { name: 'Docker', level: 70, icon: 'docker' },
+  { name: 'Git & GitHub', level: 90, icon: 'git' },
+  { name: 'Figma / UI Design', level: 85, icon: 'figma' },
 ];
 
 export const services = [
@@ -90,6 +100,22 @@ export const services = [
 
 export const projects = [
   {
+    title: 'PaiCafes',
+    description:
+      'A production cafe platform — discovery, ordering and management for cafes, live at paicafes.com.',
+    href: 'https://paicafes.com',
+    tags: ['Full Stack', 'Production', 'Platform'],
+    image: '/images/paicafes.svg',
+  },
+  {
+    title: 'Digital Marketplace MM',
+    description:
+      'A real-world digital marketplace for Myanmar — products, sellers and secure transactions at digitalmarketplacemm.com.',
+    href: 'https://digitalmarketplacemm.com',
+    tags: ['E-commerce', 'Marketplace', 'Production'],
+    image: '/images/digitalmarketplacemm.svg',
+  },
+  {
     title: 'Digizens Alliance',
     description:
       'Designed and developed the full UI/UX for the Digizens Alliance website, ensuring optimal user experience and seamless functionality.',
@@ -116,6 +142,14 @@ export const projects = [
 ];
 
 export const experience = [
+  {
+    title: 'Leadership',
+    items: [
+      'Chief Technology Officer at Reiwasakura — leading engineering strategy, architecture and delivery.',
+      'Chief Technology Officer at New Earth Company Limited — driving product engineering and technical direction.',
+      'Shipped real-world production platforms including paicafes.com and digitalmarketplacemm.com.',
+    ],
+  },
   {
     title: 'Key Achievements',
     items: [

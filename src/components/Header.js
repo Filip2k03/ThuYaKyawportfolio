@@ -34,7 +34,7 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div className={`container ${styles.inner}`}>
+      <div className={styles.inner}>
         <Link href="/" className={styles.logo} aria-label="TechyyFilip — home">
           Techyy<span>Filip</span>
         </Link>

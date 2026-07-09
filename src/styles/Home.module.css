@@ -1,8 +1,53 @@
 .hero {
+  position: relative;
   display: flex;
   align-items: center;
   min-height: calc(100vh - var(--header-h));
   padding: clamp(4rem, 8vw, 8rem) 0;
+  overflow: hidden;
+}
+
+/* ---------- Ambient floating orbs (soft mesh-gradient lighting) ---------- */
+
+.orbs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.orbA,
+.orbB {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  animation: float 14s ease-in-out infinite alternate;
+}
+
+.orbA {
+  width: 42rem;
+  height: 42rem;
+  top: -10%;
+  right: -8%;
+  background: radial-gradient(circle at 30% 30%, var(--accent), transparent 70%);
+}
+
+.orbB {
+  width: 36rem;
+  height: 36rem;
+  bottom: -15%;
+  left: -6%;
+  background: radial-gradient(circle at 60% 60%, var(--accent-2), transparent 70%);
+  animation-delay: -7s;
+}
+
+@keyframes float {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(3rem, -4rem, 0) scale(1.08);
+  }
 }
 
 .heroInner {
@@ -36,8 +81,14 @@
 .heroTagline {
   color: var(--text-muted);
   font-size: clamp(1.5rem, 2vw, 1.8rem);
-  margin-bottom: 3.2rem;
+  margin-bottom: 1.2rem;
   max-width: 48ch;
+}
+
+.heroPositions {
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin-bottom: 3.2rem;
 }
 
 .heroButtons {
@@ -77,11 +128,64 @@
   flex-shrink: 0;
 }
 
+/* 3D tilt wrapper — useTilt sets the transform, CSS eases it back */
+.avatarWrap {
+  position: relative;
+  transition: transform 0.25s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
 .avatar {
   border-radius: 50%;
   border: 3px solid var(--accent);
   object-fit: cover;
   box-shadow: var(--shadow-soft);
+}
+
+/* Floating tech chips orbiting the portrait */
+.floatChip {
+  position: absolute;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.6rem;
+  font-size: 1.2rem;
+  color: var(--accent);
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  animation: chipFloat 5s ease-in-out infinite alternate;
+}
+
+.floatChip[data-pos='0'] {
+  top: 4%;
+  left: -12%;
+}
+
+.floatChip[data-pos='1'] {
+  top: 22%;
+  right: -16%;
+  animation-delay: -1.5s;
+}
+
+.floatChip[data-pos='2'] {
+  bottom: 18%;
+  left: -14%;
+  animation-delay: -3s;
+}
+
+.floatChip[data-pos='3'] {
+  bottom: 2%;
+  right: -8%;
+  animation-delay: -4.2s;
+}
+
+@keyframes chipFloat {
+  from {
+    transform: translateY(-6px);
+  }
+  to {
+    transform: translateY(6px);
+  }
 }
 
 /* ---------- Projects ---------- */
@@ -168,5 +272,21 @@
   .heroImage :global(img) {
     width: 240px !important;
     height: 240px !important;
+  }
+
+  .floatChip[data-pos='0'] {
+    left: -6%;
+  }
+
+  .floatChip[data-pos='1'] {
+    right: -8%;
+  }
+
+  .floatChip[data-pos='2'] {
+    left: -8%;
+  }
+
+  .floatChip[data-pos='3'] {
+    right: -4%;
   }
 }

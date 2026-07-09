@@ -5,6 +5,7 @@ import Layout from '../components/Layout';
 import SkillsSection from '../components/SkillsSection';
 import Reveal from '../components/Reveal';
 import { useTypewriter } from '../hooks/useTypewriter';
+import { useTilt } from '../hooks/useTilt';
 import { identity, socials, projects } from '../data/profile';
 import styles from '../styles/Home.module.css';
 
@@ -14,12 +15,20 @@ const ICONS = {
   email: FaEnvelope,
 };
 
+const FLOAT_CHIPS = ['React', 'Next.js', 'PHP', 'Python'];
+
 export default function Home() {
   const typedRole = useTypewriter(identity.roles);
+  const tiltRef = useTilt(8);
 
   return (
     <Layout>
       <section className={styles.hero} aria-labelledby="hero-heading">
+        {/* Ambient floating orbs — pure decoration, hidden from AT */}
+        <div className={styles.orbs} aria-hidden="true">
+          <span className={styles.orbA} />
+          <span className={styles.orbB} />
+        </div>
         <div className={`container ${styles.heroInner}`}>
           <div className={styles.heroContent}>
             <span className="section-eyebrow">whoami</span>
@@ -31,6 +40,9 @@ export default function Home() {
               <span className="cursor-block" aria-hidden="true" />
             </p>
             <p className={styles.heroTagline}>{identity.tagline}</p>
+            <p className={`mono ${styles.heroPositions}`}>
+              {identity.positions.map((p) => `${p.role} @ ${p.company}`).join(' · ')}
+            </p>
 
             <div className={styles.heroButtons}>
               <a href={identity.cvPath} className="btn" download>
@@ -54,14 +66,26 @@ export default function Home() {
           </div>
 
           <div className={styles.heroImage}>
-            <Image
-              src={identity.avatar}
-              alt={`Portrait of ${identity.name} (${identity.alias})`}
-              width={340}
-              height={340}
-              priority
-              className={styles.avatar}
-            />
+            <div ref={tiltRef} className={styles.avatarWrap}>
+              <Image
+                src={identity.avatar}
+                alt={`Portrait of ${identity.name} (${identity.alias})`}
+                width={340}
+                height={340}
+                priority
+                className={styles.avatar}
+              />
+              {FLOAT_CHIPS.map((chip, index) => (
+                <span
+                  key={chip}
+                  className={`mono ${styles.floatChip}`}
+                  data-pos={index}
+                  aria-hidden="true"
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
