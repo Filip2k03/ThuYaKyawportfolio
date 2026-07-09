@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { FaLinkedin, FaGithub, FaEnvelope, FaDownload, FaExternalLinkAlt } from 'react-icons/fa';
 import Layout from '../components/Layout';
 import SkillsSection from '../components/SkillsSection';
+import StatsSection from '../components/StatsSection';
 import Reveal from '../components/Reveal';
 import { useTypewriter } from '../hooks/useTypewriter';
 import { useTilt } from '../hooks/useTilt';
@@ -90,6 +91,8 @@ export default function Home() {
         </div>
       </section>
 
+      <StatsSection />
+
       <SkillsSection />
 
       <section className="section" aria-labelledby="projects-heading">
@@ -105,7 +108,11 @@ export default function Home() {
           </Reveal>
           <div className={styles.projectsGrid}>
             {projects.map((project, index) => (
-              <Reveal key={project.title} delay={index * 80}>
+              <Reveal
+                key={project.title}
+                delay={index * 80}
+                variant={index % 2 === 0 ? 'left' : 'right'}
+              >
                 <article className={`glass-card ${styles.projectCard}`}>
                   <div className={styles.projectImage}>
                     <Image src={project.image} alt="" width={480} height={280} />

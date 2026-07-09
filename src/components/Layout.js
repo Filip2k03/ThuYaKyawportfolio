@@ -1,9 +1,12 @@
 import Header from './Header';
 import Footer from './Footer';
 import BackToTop from './BackToTop';
+import ScrollProgress from './ScrollProgress';
+import Terminal from './Terminal';
 import SEO from './SEO';
 
-// Shared page shell: skip link, header, main landmark, footer, back-to-top.
+// Shared page shell: skip link, progress bar, header, main landmark,
+// footer, back-to-top and the playable terminal easter egg.
 const Layout = ({ children, title, description }) => {
   return (
     <>
@@ -11,9 +14,11 @@ const Layout = ({ children, title, description }) => {
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
+      <ScrollProgress />
       <Header />
       <main id="main-content">{children}</main>
       <Footer />
+      <Terminal />
       <BackToTop />
     </>
   );

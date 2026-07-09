@@ -1,0 +1,29 @@
+.stats {
+  padding: clamp(3rem, 5vw, 5rem) 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 2.4rem 1.6rem;
+  text-align: center;
+}
+
+.value {
+  font-size: clamp(2.8rem, 4vw, 4rem);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.label {
+  font-size: 1.4rem;
+  color: var(--text-muted);
+}

@@ -9,7 +9,9 @@ Live: [techyyfilip.vercel.app](https://techyyfilip.vercel.app)
 - **Retro-matte design system** — warm near-black/brown dark theme, matte emerald accent, terminal-flavored mono labels, subtle CRT scanline overlay.
 - **Theme + accent customizer** — dark/light toggle plus a user-selectable accent (emerald / violet / bronze), persisted in localStorage.
 - **Typewriter hero** with blinking block cursor (static under `prefers-reduced-motion`).
-- **Featured projects showcase**, scroll-reveal animations, back-to-top button, custom 404.
+- **Interactive terminal** — visitors can play with `help`, `whoami`, `skills`, `projects`, `accent violet`, `theme light` and more; all output reads from the data layer.
+- **Featured projects showcase** (Reiwasakura, PaiCafes, Digital Marketplace MM, …) with AOS-style directional scroll reveals (up/left/right/zoom).
+- **Animated stats counters**, scroll progress bar, 3D tilt hero portrait, floating tech chips, back-to-top button, custom 404.
 - **SEO** — per-page meta, Open Graph, Twitter cards, JSON-LD Person schema, canonical URLs, `sitemap.xml`, `robots.txt`.
 - **Accessibility** — skip link, landmarks, `aria-label`s on icon buttons, visible focus rings, reduced-motion support.
 - **Content as data** — all copy lives in `src/data/profile.js`; components never hardcode content.

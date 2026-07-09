@@ -1,0 +1,124 @@
+.fab {
+  position: fixed;
+  bottom: 2.4rem;
+  left: 2.4rem;
+  z-index: 950;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 1rem;
+  font-size: 2rem;
+  color: var(--accent);
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.fab:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.panel {
+  position: fixed;
+  bottom: 8.4rem;
+  left: 2.4rem;
+  z-index: 950;
+  width: min(520px, calc(100vw - 4.8rem));
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--bg-elev-1) 94%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.titleBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.6rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.title {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+}
+
+.closeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 0.6rem;
+  font-size: 1.4rem;
+  color: var(--text-muted);
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.closeBtn:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.body {
+  height: min(340px, 50vh);
+  padding: 1.4rem 1.6rem;
+  overflow-y: auto;
+  font-size: 1.3rem;
+  line-height: 1.7;
+}
+
+.prompt {
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.cmdLine {
+  color: var(--text);
+}
+
+.outLine {
+  margin: 0;
+  color: var(--text-muted);
+  font-family: inherit;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.inputRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-top: 0.4rem;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 1.6rem; /* ≥16px prevents iOS auto-zoom on focus */
+  caret-color: var(--accent);
+}
+
+@media (max-width: 600px) {
+  .panel {
+    left: 1.2rem;
+    bottom: 8rem;
+    width: calc(100vw - 2.4rem);
+  }
+
+  .fab {
+    left: 1.2rem;
+  }
+}

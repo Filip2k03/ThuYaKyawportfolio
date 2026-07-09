@@ -100,6 +100,14 @@ export const services = [
 
 export const projects = [
   {
+    title: 'Reiwasakura',
+    description:
+      'Company platform of Reiwasakura, where I lead technology as CTO — engineering strategy, product and delivery at reiwasakura.tech.',
+    href: 'https://reiwasakura.tech',
+    tags: ['CTO', 'Company', 'Platform'],
+    image: '/images/reiwasakura.svg',
+  },
+  {
     title: 'PaiCafes',
     description:
       'A production cafe platform — discovery, ordering and management for cafes, live at paicafes.com.',
