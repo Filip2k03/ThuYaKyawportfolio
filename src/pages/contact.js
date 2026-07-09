@@ -1,4 +1,5 @@
-import { FaLinkedin, FaGithub, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { useState } from 'react';
+import { FaLinkedin, FaGithub, FaEnvelope, FaPhone, FaCopy, FaCheck } from 'react-icons/fa';
 import Layout from '../components/Layout';
 import Reveal from '../components/Reveal';
 import { identity, socials, profiles } from '../data/profile';
@@ -11,6 +12,18 @@ const ICONS = {
 };
 
 const Contact = () => {
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(identity.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard unavailable (permissions/http) — the mailto link still works
+    }
+  };
+
   // Compose the mailto in JS on submit — a literal mailto: form action
   // triggers a mixed-content warning on HTTPS and can't prefill a body.
   const onSubmit = (e) => {
@@ -40,10 +53,20 @@ const Contact = () => {
             </p>
 
             <div className={styles.channels}>
-              <a href={`mailto:${identity.email}`} className={`glass-card ${styles.channel}`}>
+              <div className={`glass-card ${styles.channel}`}>
                 <FaEnvelope aria-hidden="true" />
-                <span>{identity.email}</span>
-              </a>
+                <a href={`mailto:${identity.email}`} className={styles.channelLink}>
+                  {identity.email}
+                </a>
+                <button
+                  onClick={copyEmail}
+                  className={styles.copyBtn}
+                  aria-label={copied ? 'Email copied' : 'Copy email address'}
+                  title="Copy email"
+                >
+                  {copied ? <FaCheck /> : <FaCopy />}
+                </button>
+              </div>
               <a href={`tel:${identity.phone}`} className={`glass-card ${styles.channel}`}>
                 <FaPhone aria-hidden="true" />
                 <span>{identity.phone}</span>

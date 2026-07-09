@@ -26,6 +26,33 @@
   flex-shrink: 0;
 }
 
+.channelLink {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.channelLink:hover {
+  color: var(--accent);
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 0.6rem;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.copyBtn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
 .socials {
   display: flex;
   gap: 1.2rem;

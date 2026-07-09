@@ -8,8 +8,8 @@ import styles from '../styles/Terminal.module.css';
 const PROMPT = `guest@${identity.alias.toLowerCase()}:~$`;
 
 const WELCOME = [
-  `TechyyOS v2.2 — interactive terminal`,
-  `Type 'help' to see what you can do.`,
+  `TechyyOS v3 — interactive terminal`,
+  `Type 'help' to see what you can do. (Tip: press T anywhere to toggle me)`,
 ];
 
 // A playable retro terminal for visitors — every command reads from
@@ -33,11 +33,20 @@ const Terminal = () => {
 
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Escape') {
+        setOpen(false);
+        return;
+      }
+      // press T anywhere (outside a field) to toggle the terminal
+      const inField = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || '');
+      if (e.key.toLowerCase() === 't' && !inField && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        e.preventDefault();
+        setOpen((o) => !o);
+      }
     };
-    if (open) window.addEventListener('keydown', onKey);
+    window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [open]);
+  }, []);
 
   const run = (raw) => {
     const [cmd, ...args] = raw.trim().split(/\s+/);

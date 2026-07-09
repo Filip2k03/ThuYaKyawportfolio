@@ -28,7 +28,7 @@ const StatsSection = () => {
     <section className={styles.stats} aria-label="Career statistics">
       <div className={`container ${styles.grid}`}>
         {STATS.map((stat, index) => (
-          <StatItem key={stat.label} {...stat} delay={index * 80} />
+          <StatItem key={stat.label} {...stat} delay={index * 140} />
         ))}
       </div>
     </section>

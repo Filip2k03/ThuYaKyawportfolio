@@ -78,18 +78,25 @@ const FoxMascot = () => {
       targetTilt = Math.max(-10, Math.min(10, dy * 0.4));
     };
 
+    let headX = 0;
+    let headY = 0;
+
     const animate = () => {
       // ease the lean back to upright — buffered, never snappy
       targetTilt *= 0.9;
       tilt += (targetTilt - tilt) * 0.15;
-      if (foxRef.current) {
-        foxRef.current.style.transform = `rotate(${tilt.toFixed(2)}deg)`;
-      }
 
       if (mouse && foxRef.current) {
         const rect = foxRef.current.getBoundingClientRect();
         const cx = rect.left + rect.width / 2;
         const cy = rect.top + rect.height * 0.42; // eye line
+
+        // 3D head turn: rotate toward the cursor, eased for a lifelike feel
+        const targetY = Math.max(-16, Math.min(16, ((mouse.x - cx) / window.innerWidth) * 55));
+        const targetX = Math.max(-12, Math.min(12, (-(mouse.y - cy) / window.innerHeight) * 40));
+        headY += (targetY - headY) * 0.08;
+        headX += (targetX - headX) * 0.08;
+
         const angle = Math.atan2(mouse.y - cy, mouse.x - cx);
         const dist = Math.min(2.6, Math.hypot(mouse.x - cx, mouse.y - cy) / 60);
         const dx = (Math.cos(angle) * dist).toFixed(2);
@@ -97,6 +104,10 @@ const FoxMascot = () => {
         const t = `translate(${dx}px, ${dyp}px)`;
         if (leftPupilRef.current) leftPupilRef.current.style.transform = t;
         if (rightPupilRef.current) rightPupilRef.current.style.transform = t;
+      }
+
+      if (foxRef.current) {
+        foxRef.current.style.transform = `perspective(280px) rotateY(${headY.toFixed(2)}deg) rotateX(${headX.toFixed(2)}deg) rotate(${tilt.toFixed(2)}deg)`;
       }
       raf = requestAnimationFrame(animate);
     };
@@ -120,7 +131,7 @@ const FoxMascot = () => {
 
   return (
     <div
-      className={`${styles.wrap} ${docked ? styles.docked : styles.centered} ${flying ? styles.flying : ''}`}
+      className={`${styles.wrap} ${docked ? styles.docked : styles.centered} ${flying ? styles.flying : ''} ${message ? styles.speaking : ''}`}
     >
       {message && (
         <div className={styles.bubble} role="status">
@@ -149,16 +160,18 @@ const FoxMascot = () => {
             <path d="M106 60 C 98 78, 82 96, 60 104 C 78 104, 100 88, 106 60 Z" fill="#e8dcc8" />
             {/* muzzle */}
             <path d="M60 66 C 70 66, 78 76, 74 88 C 70 98, 50 98, 46 88 C 42 76, 50 66, 60 66 Z" fill="#f5ecdd" />
-            {/* eyes */}
-            <circle cx="42" cy="52" r="9" fill="#fff8ec" />
-            <circle cx="78" cy="52" r="9" fill="#fff8ec" />
-            <g ref={leftPupilRef}>
-              <circle cx="42" cy="52" r="4" fill="#241a14" />
-              <circle cx="43.4" cy="50.6" r="1.3" fill="#ffffff" />
-            </g>
-            <g ref={rightPupilRef}>
-              <circle cx="78" cy="52" r="4" fill="#241a14" />
-              <circle cx="79.4" cy="50.6" r="1.3" fill="#ffffff" />
+            {/* eyes — the group blinks on a natural interval */}
+            <g className={styles.eyes}>
+              <circle cx="42" cy="52" r="9" fill="#fff8ec" />
+              <circle cx="78" cy="52" r="9" fill="#fff8ec" />
+              <g ref={leftPupilRef}>
+                <circle cx="42" cy="52" r="4" fill="#241a14" />
+                <circle cx="43.4" cy="50.6" r="1.3" fill="#ffffff" />
+              </g>
+              <g ref={rightPupilRef}>
+                <circle cx="78" cy="52" r="4" fill="#241a14" />
+                <circle cx="79.4" cy="50.6" r="1.3" fill="#ffffff" />
+              </g>
             </g>
             {/* nose + mouth */}
             <path d="M54 78 Q 60 74, 66 78 Q 60 86, 54 78 Z" fill="#241a14" />

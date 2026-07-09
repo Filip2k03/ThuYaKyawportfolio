@@ -23,7 +23,7 @@ const Experience = () => {
 
           <div className={styles.grid}>
             {experience.map((group, index) => (
-              <Reveal key={group.title} delay={index * 60}>
+              <Reveal key={group.title} delay={index * 100}>
                 <article className={`glass-card ${styles.card}`}>
                   <h2>{group.title}</h2>
                   <ul>

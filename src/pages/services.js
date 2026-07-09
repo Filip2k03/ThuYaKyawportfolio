@@ -23,7 +23,7 @@ const Services = () => {
           </Reveal>
           <div className={styles.serviceGrid}>
             {services.map((service, index) => (
-              <Reveal key={service.title} delay={index * 60} variant="zoom">
+              <Reveal key={service.title} delay={index * 100} variant="zoom">
                 <article className={`glass-card ${styles.serviceCard}`}>
                   <div className={styles.serviceImage}>
                     <Image src={service.image} alt="" width={400} height={220} />

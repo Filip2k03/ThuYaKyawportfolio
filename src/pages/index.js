@@ -110,7 +110,7 @@ export default function Home() {
             {projects.map((project, index) => (
               <Reveal
                 key={project.title}
-                delay={index * 80}
+                delay={index * 140}
                 variant={index % 2 === 0 ? 'left' : 'right'}
               >
                 <article className={`glass-card ${styles.projectCard}`}>

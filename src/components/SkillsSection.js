@@ -18,7 +18,7 @@ const SkillsSection = () => {
         </Reveal>
         <div className={styles.skillsGrid}>
           {skills.map((skill, index) => (
-            <Reveal key={skill.name} delay={index * 60}>
+            <Reveal key={skill.name} delay={index * 100}>
               <Skill {...skill} />
             </Reveal>
           ))}
