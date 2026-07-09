@@ -7,7 +7,7 @@ const SkillsSection = () => {
   return (
     <section className={`section ${styles.skillsSection}`} aria-labelledby="skills-heading">
       <div className="container">
-        <Reveal>
+        <Reveal variant="fly">
           <span className="section-eyebrow">skills --list</span>
           <h2 id="skills-heading" className="section-title">
             My <span>Skills</span>

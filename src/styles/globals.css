@@ -304,6 +304,13 @@ h1, h2, h3 {
   transform: scale(0.92);
 }
 
+/* Fly-in: bigger arc with a soft overshoot spring */
+.reveal--fly {
+  transform: translateY(64px) scale(0.94) rotate(1.5deg);
+  transition: opacity 0.7s ease,
+    transform 0.9s cubic-bezier(0.34, 1.4, 0.44, 1);
+}
+
 .reveal.is-visible {
   opacity: 1;
   transform: none;

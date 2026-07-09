@@ -1,19 +1,42 @@
 .wrap {
   position: fixed;
-  right: 2rem;
-  bottom: 8.4rem;
   z-index: 940;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 0.8rem;
+  /* left/top on both states so the flight path can animate */
+  transition: left 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Spawn point: center stage of the home hero */
+.centered {
+  left: 50%;
+  top: 62%;
+  transform: translate(-50%, -50%) scale(1.7);
+}
+
+/* Dock: bottom-right corner, above the back-to-top button */
+.docked {
+  left: calc(100% - 11rem);
+  top: calc(100% - 17rem);
+  transform: translate(0, 0) scale(1);
+}
+
+/* Flight after-effect: accent glow trail while moving */
+.flying .foxBtn {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.35))
+    drop-shadow(0 0 14px var(--accent))
+    drop-shadow(-22px 10px 22px var(--accent-soft));
 }
 
 .foxBtn {
   border-radius: 50%;
   line-height: 0;
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.35));
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, filter 0.4s ease;
 }
 
 .foxBtn:hover {
@@ -58,13 +81,28 @@
 }
 
 @media (max-width: 600px) {
-  .wrap {
-    right: 1.2rem;
-    bottom: 8rem;
+  .centered {
+    top: 74%;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+
+  .docked {
+    left: calc(100% - 8.8rem);
+    top: calc(100% - 16rem);
   }
 
   .fox svg {
     width: 64px;
     height: 59px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap {
+    transition: none;
+  }
+
+  .fox {
+    animation: none;
   }
 }

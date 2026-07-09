@@ -11,7 +11,7 @@ const Experience = () => {
     >
       <section className="section" aria-labelledby="experience-heading">
         <div className="container">
-          <Reveal>
+          <Reveal variant="fly">
             <span className="section-eyebrow">experience --log</span>
             <h1 id="experience-heading" className="section-title">
               My <span>Experience</span>

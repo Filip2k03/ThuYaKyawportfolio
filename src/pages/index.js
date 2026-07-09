@@ -97,7 +97,7 @@ export default function Home() {
 
       <section className="section" aria-labelledby="projects-heading">
         <div className="container">
-          <Reveal>
+          <Reveal variant="fly">
             <span className="section-eyebrow">projects --featured</span>
             <h2 id="projects-heading" className="section-title">
               Featured <span>Projects</span>

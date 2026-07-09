@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 import styles from '../styles/FoxMascot.module.css';
 
 const MESSAGES = [
@@ -9,15 +10,52 @@ const MESSAGES = [
   'Thanks for visiting Thu Ya Kyaw’s portfolio!',
 ];
 
-// Floating red fox mascot: pupils track the cursor, the body leans with
-// scroll velocity (eased back — the "scroll buffer"), and clicking it
-// cycles through helpful/fun speech bubbles. Fully decorative for AT.
+// Floating red fox mascot: spawns centered in the home hero, then "flies"
+// to its corner dock on first scroll (with an accent glow trail). Pupils
+// track the cursor; the body leans with scroll velocity, eased back.
+// Clicking it cycles through helpful/fun speech bubbles.
 const FoxMascot = () => {
+  const router = useRouter();
+  const isHome = router.pathname === '/';
   const foxRef = useRef(null);
   const leftPupilRef = useRef(null);
   const rightPupilRef = useRef(null);
   const [message, setMessage] = useState(null);
+  const [docked, setDocked] = useState(!isHome);
+  const [flying, setFlying] = useState(false);
   const msgIndex = useRef(0);
+
+  // On home the fox docks once the visitor scrolls, and returns to center
+  // at the top; the .flying class drives the glow-trail after-effect.
+  useEffect(() => {
+    if (!isHome) {
+      setDocked(true);
+      return undefined;
+    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setDocked(true);
+      return undefined;
+    }
+
+    let flyTimer;
+    const onScroll = () => {
+      const shouldDock = window.scrollY > 80;
+      setDocked((prev) => {
+        if (prev !== shouldDock) {
+          setFlying(true);
+          window.clearTimeout(flyTimer);
+          flyTimer = window.setTimeout(() => setFlying(false), 950);
+        }
+        return shouldDock;
+      });
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.clearTimeout(flyTimer);
+    };
+  }, [isHome]);
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
@@ -80,7 +118,9 @@ const FoxMascot = () => {
   };
 
   return (
-    <div className={styles.wrap}>
+    <div
+      className={`${styles.wrap} ${docked ? styles.docked : styles.centered} ${flying ? styles.flying : ''}`}
+    >
       {message && (
         <div className={styles.bubble} role="status">
           {message}

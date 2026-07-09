@@ -18,7 +18,7 @@ const Contact = () => {
     >
       <section className="section" aria-labelledby="contact-heading">
         <div className={`container ${styles.wrap}`}>
-          <Reveal className={styles.intro}>
+          <Reveal className={styles.intro} variant="fly">
             <span className="section-eyebrow">contact --init</span>
             <h1 id="contact-heading" className="section-title">
               Let&apos;s <span>Talk</span>

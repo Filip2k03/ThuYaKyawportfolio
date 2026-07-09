@@ -12,7 +12,7 @@ const Services = () => {
     >
       <section className="section" aria-labelledby="services-heading">
         <div className="container">
-          <Reveal>
+          <Reveal variant="fly">
             <span className="section-eyebrow">services --list</span>
             <h1 id="services-heading" className="section-title">
               My <span>Services</span>

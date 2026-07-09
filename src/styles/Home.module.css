@@ -66,8 +66,13 @@
   margin-bottom: 1.2rem;
 }
 
+/* Luxury gradient name — falls back to accent where clip is unsupported */
 .heroTitle span {
   color: var(--accent);
+  background: linear-gradient(115deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .heroRole {
