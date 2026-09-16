@@ -16,7 +16,11 @@ Do not point the zone at leftover IPs from an old host. In the Vercel domain pan
 
 ## Cloudflare SSL / TLS
 
-1. SSL/TLS → Overview → **Full (strict)**. Flexible mode causes HTTPS loops with Vercel (`ERR_TOO_MANY_REDIRECTS`).
+This cannot be changed from the repo. Open:
+
+`https://dash.cloudflare.com/?to=/:account/thuyakyaw.com/ssl-tls`
+
+1. SSL/TLS → Overview → **Full (strict)**. Flexible mode causes HTTPS loops with Vercel (`ERR_TOO_MANY_REDIRECTS`). Live `www` currently reaches Vercel over HTTPS (no redirect loop), so the zone is already at least Full — confirm it is **strict**.
 2. Turn **Always Use HTTPS** on.
 3. Do **not** add a Cloudflare Redirect Rule that sends www → apex. Vercel already sends apex → www.
 4. If a push is followed by connection failures, temporarily grey-cloud `www` and `@`. If the site loads on the Vercel URL and on grey-cloud, the proxy was the problem — then set Full (strict) and orange-cloud again only if you need Cloudflare WAF.
