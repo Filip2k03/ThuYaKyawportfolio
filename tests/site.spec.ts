@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-const routes = ['/', '/work', '/work/paicafes', '/work/laba-taxi', '/systems', '/technology', '/timeline', '/about', '/contact', '/cv'];
+const routes = ['/', '/work', '/work/paicafes', '/work/laba-taxi', '/systems', '/technology', '/timeline', '/about', '/contact', '/cv', '/status'];
 
 for (const route of routes) {
   test(`${route} renders one h1, no console errors, no horizontal overflow`, async ({ page }, info) => {
@@ -48,7 +48,7 @@ test('mobile navigation opens and links to every route', async ({ page }, info) 
   await page.goto('/');
   await page.getByRole('button', { name: 'Open navigation' }).click();
   const links = page.getByRole('dialog').getByRole('link');
-  await expect(links).toHaveCount(7);
+  await expect(links).toHaveCount(8);
   await links.filter({ hasText: 'Systems' }).click();
   await expect(page).toHaveURL(/\/systems$/);
 });
@@ -56,13 +56,32 @@ test('mobile navigation opens and links to every route', async ({ page }, info) 
 test('metadata, sitemap and robots are published', async ({ page, request }) => {
   await page.goto('/');
   await expect(page).toHaveTitle('Thu Ya Kyaw — CTO · Systems Architect · Product Engineer');
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://thuyakyaw.com');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://www.thuyakyaw.com');
   expect(await page.locator('script[type="application/ld+json"]').innerHTML()).toContain('"@type":"Person"');
   const sitemap = await request.get('/sitemap.xml');
   expect(sitemap.ok()).toBeTruthy();
   expect(await sitemap.text()).toContain('/work/paicafes');
   const robots = await request.get('/robots.txt');
   expect(await robots.text()).toContain('sitemap.xml');
+});
+
+test('command palette jumps to work', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'keyboard palette is a desktop control');
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Open command palette' }).click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toBeVisible();
+  await dialog.getByLabel('Search pages and work').fill('PaiCafes');
+  await dialog.getByRole('button', { name: /PaiCafes/ }).click();
+  await expect(page).toHaveURL(/\/work\/paicafes$/);
+});
+
+test('health endpoint reports the canonical host', async ({ request }) => {
+  const res = await request.get('/health');
+  expect(res.ok()).toBeTruthy();
+  const body = await res.json();
+  expect(body.ok).toBe(true);
+  expect(body.canonical).toBe('https://www.thuyakyaw.com');
 });
 
 test('legacy routes redirect', async ({ request }) => {

@@ -1,7 +1,9 @@
 export const site = {
   name: 'Thu Ya Kyaw',
   alias: 'TechyyFilip',
-  url: 'https://thuyakyaw.com',
+  /** Production canonical. Vercel + Cloudflare currently 308 the apex onto www. */
+  url: 'https://www.thuyakyaw.com',
+  apex: 'https://thuyakyaw.com',
   email: 'stephanfilip7@gmail.com',
   phone: '+959954480806',
   location: 'Global / Remote',

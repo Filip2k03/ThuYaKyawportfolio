@@ -4,6 +4,8 @@ import { Analytics } from '@vercel/analytics/next';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { SmoothScroll } from '@/components/SmoothScroll';
+import { CommandPalette } from '@/components/CommandPalette';
+import { BackToTop } from '@/components/BackToTop';
 import { site } from '@/data/site';
 import './globals.css';
 
@@ -15,7 +17,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: site.title, template: `%s — ${site.name}` },
   description: site.description,
-  alternates: { canonical: '/' },
+  applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  keywords: [...site.primaryIdentity, ...site.secondaryIdentity, site.alias],
+  alternates: { canonical: '/', languages: { 'en-US': '/' } },
   openGraph: {
     type: 'website',
     url: site.url,
@@ -26,6 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: { card: 'summary_large_image', title: site.title, description: site.description },
   robots: { index: true, follow: true },
+  formatDetection: { telephone: false, email: false, address: false },
 };
 
 export const viewport: Viewport = {
@@ -67,6 +74,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
+        <CommandPalette />
+        <BackToTop />
         <SmoothScroll />
         {process.env.VERCEL && <Analytics />}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />

@@ -1,0 +1,10 @@
+/* TEAM */
+Name: Thu Ya Kyaw
+Site: https://www.thuyakyaw.com
+GitHub: https://github.com/Filip2k03
+
+/* SITE */
+Standards: HTML5, CSS, JSON-LD
+Software: Next.js, TypeScript, React, Three.js
+Hosting: Vercel
+DNS: Cloudflare

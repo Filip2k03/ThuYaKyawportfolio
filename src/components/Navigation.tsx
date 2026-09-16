@@ -5,8 +5,9 @@ import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { navigation } from '@/data/site';
+import { requestCommandPalette } from '@/lib/commandPalette';
 
-const mobileLinks = [...navigation, ['CV', '/cv'], ['Contact', '/contact']] as const;
+const mobileLinks = [...navigation, ['CV', '/cv'], ['Contact', '/contact'], ['Status', '/status']] as const;
 
 export function Navigation() {
   const [open, setOpen] = useState(false);
@@ -39,6 +40,9 @@ export function Navigation() {
         ))}
       </nav>
       <div className="nav-actions">
+        <button type="button" className="command-trigger" onClick={requestCommandPalette} aria-label="Open command palette">
+          <kbd>⌘K</kbd>
+        </button>
         <Link className="cv-link" href="/cv" aria-current={isCurrent('/cv')}>
           CV <ArrowUpRight size={12} />
         </Link>

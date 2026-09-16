@@ -2,7 +2,7 @@
 
 Portfolio of **Thu Ya Kyaw** (a.k.a. **TechyyFilip**) — CTO · Systems Architect · Product Engineer.
 
-Live: [thuyakyaw.com](https://thuyakyaw.com)
+Live: [www.thuyakyaw.com](https://www.thuyakyaw.com)
 
 > "I build the systems behind ambitious digital products."
 
@@ -86,9 +86,14 @@ theme customiser and i18n; nothing is persisted client-side.)
 
 ## Deployment
 
-- **Vercel** — production deploys from `main` via the GitHub integration (`output: 'standalone'` is compatible).
+- **Vercel** — production deploys from `main` via the GitHub integration. `output: 'standalone'` is off on Vercel
+  (`VERCEL` env) and on for Docker.
+- **Canonical host** — `https://www.thuyakyaw.com`. Apex `thuyakyaw.com` must redirect to www (already true on Vercel).
+- **Cloudflare DNS** — see `deploy/cloudflare.md`. SSL/TLS must be **Full (strict)**. Grey-cloud the records if a git
+  push is followed by `ERR_CONNECTION_FAILED`; that error is DNS/TLS in front of Vercel, not a failed Next.js build.
+- **Health** — `GET /health` returns JSON for uptime monitors.
 - **Docker + Nginx** — `docker compose -f deploy/docker-compose.yml up -d --build`, then install
-  `deploy/nginx.conf` as the TLS-terminating reverse proxy.
+  `deploy/nginx.conf` as the TLS-terminating reverse proxy (www canonical).
 
 Legacy routes redirect permanently: `/skills → /technology`, `/services → /systems`, `/experience → /timeline`.
 

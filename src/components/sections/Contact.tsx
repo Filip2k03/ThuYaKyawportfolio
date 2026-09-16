@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { site } from '@/data/site';
 import { Button } from '@/components/ui/button';
+import { CopyEmail } from '@/components/CopyEmail';
 
 export function Contact({ standalone = false }: { standalone?: boolean }) {
   // On /contact this block is the page itself, so its title is the document h1.
@@ -41,9 +42,15 @@ export function Contact({ standalone = false }: { standalone?: boolean }) {
           </a>
         </Button>
       </div>
-      <a className="contact-email" href={`mailto:${site.email}`}>
-        {site.email}
-      </a>
+      <div className="contact-direct">
+        <a className="contact-email" href={`mailto:${site.email}`}>
+          {site.email}
+        </a>
+        <CopyEmail />
+        <a className="contact-phone" href={`tel:${site.phone.replaceAll(' ', '')}`}>
+          {site.phone}
+        </a>
+      </div>
     </section>
   );
 }
